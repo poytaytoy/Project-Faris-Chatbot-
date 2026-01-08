@@ -572,11 +572,9 @@ export class LAppModel extends CubismUserModel {
       let value = 0.75; // リアルタイムでリップシンクを行う場合、システムから音量を取得して、0~1の範囲で値を入力します。
       this._wavFileHandler.update(deltaTimeSeconds);
       value = this._wavFileHandler.getRms();
-
-      if (value < 0.01){
-        for (let i = 0; i < this._lipSyncIds.getSize(); ++i) {
+      
+      for (let i = 0; i < this._lipSyncIds.getSize(); ++i) {
           this._model.addParameterValueById(this._lipSyncIds.at(i), value, 5); //1.5
-        }
       }
     }
 
