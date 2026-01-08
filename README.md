@@ -20,7 +20,7 @@ Note as of Jan 8 2026,
 
 It has been 3 years and I have overhauled this project for deployment. ChatGPT 3.5 has now been updated to using Groq's Llama 8b instant parameter model, and the flask server has been switched to FASTAPI. Much of the backend logic has been rewritten, but the React frontend remains largely unchanged. Various UI has been removed because they were unfinished features and sentiment based expressions no longer exist as the newer model does not support expressions. If you wish to check out the new changes, check out the deployment link here:
 
->>> **[https://project-faris-chatbot.vercel.app/](https://project-faris-chatbot.vercel.app/)**
+ **[https://project-faris-chatbot.vercel.app/](https://project-faris-chatbot.vercel.app/)**
 
 This project is outdated, since many new technologies have taken place in the midst of the AI boom. There are now React libraries that does the Live2D Web SDK heavy lifting for you rather than me porting the entire Typscript SDK over and grinding Chinese forums to get it working. Furthermore, WebRTC technologies like Livekit has made component of sending a `.wav` file over to the frontend obsolete, as it allows for essentially real-time streaming and response from chatbots. 
 
