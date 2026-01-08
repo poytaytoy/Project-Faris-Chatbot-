@@ -658,7 +658,7 @@ export class LAppModel extends CubismUserModel {
     if (voice.localeCompare('') != 0) {
       let path = voice;
       path = this._modelHomeDir + path;
-      this._wavFileHandler.start(path);
+      //this._wavFileHandler.start(path); //! I made a change 
     }
 
     if (this._debugMode) {
