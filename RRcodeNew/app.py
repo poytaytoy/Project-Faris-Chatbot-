@@ -10,7 +10,8 @@ from voice import generateVoice, processCode
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
-
+if not os.path.exists("audioResult"):
+    os.makedirs("audioResult")
 
 load_dotenv()
 
