@@ -675,7 +675,6 @@ export class LAppModel extends CubismUserModel {
   }
 
   public startSpeaking(path: string, audioElement: HTMLAudioElement): void{
-    console.log("has spoken");
     this._wavFileHandler.start(path, audioElement)
   }
 

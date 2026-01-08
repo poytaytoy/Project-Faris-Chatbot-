@@ -18,8 +18,6 @@ function Chat(){
   const [active, isActive] = useState(false);
   const [realMessage, needResponse] = useState(false)
   const chatboxRef = useRef(null)
-
-  useEffect(() => {console.log('here'); console.log(sentMemory)}, [sentMemory])
   
   const setMessage = (event = null) => {
 

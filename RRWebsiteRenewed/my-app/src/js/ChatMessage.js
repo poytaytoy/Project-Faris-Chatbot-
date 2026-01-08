@@ -77,9 +77,6 @@ function ChatMessage(props){
     const className = props.user ? 'chatLogUser': 'chatLogAssistant'
     let requiersReadMore = false
 
-    useEffect(() => {console.log(On)}, [On])
-
-
     const processLength = (child) => {
         if (child.length > 200){
             requiersReadMore = true
@@ -96,8 +93,6 @@ function ChatMessage(props){
 
     let displayedText = processLength(props.realChild)
     let boxText = !props.user ? codeBlockOutput(props.realChild) : [props.realChild]
-    
-    console.log(boxText)
 
     return (
     <div class = {className} >

@@ -39,7 +39,6 @@ function ReactLive2d(props) {
     useEffect( ()=> {
 
         if (previousSave !== ''){
-            console.log(previousSaveMood)
             if (previousSaveMood != 'exp_01'){
                 LAppDelegate.getInstance().setExpression(previousSaveMood)
             }
