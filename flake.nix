@@ -28,9 +28,18 @@
             pydantic
             uvicorn
           ]))
+          pkgs.util-linux # Provides libuuid
+          pkgs.stdenv.cc.cc.lib # Provides libstdc++
+          pkgs.alsa-lib # Often needed for Speech SDK audio
+          pkgs.openssl
         ];
         shellHook = ''
-          python --version
+          export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [ 
+            pkgs.util-linux 
+            pkgs.stdenv.cc.cc.lib 
+            pkgs.alsa-lib 
+            pkgs.openssl 
+          ]}"
         '';
       };
     };

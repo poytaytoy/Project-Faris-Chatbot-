@@ -161,7 +161,6 @@ export class CubismFramework {
       );
       return;
     }
-    console.log("happened1")
     //---- static 初期化 ----
     Value.staticInitializeNotForClientCall();
 

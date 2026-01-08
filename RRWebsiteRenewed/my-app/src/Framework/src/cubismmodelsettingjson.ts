@@ -89,7 +89,6 @@ export class CubismModelSettingJson extends ICubismModelSetting {
    * @param size      Model3Jsonのデータサイズ
    */
   public constructor(buffer: ArrayBuffer, size: number) {
-    console.log(buffer)
     super();
     this._json = CubismJson.create(buffer, size);
 

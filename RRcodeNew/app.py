@@ -5,14 +5,13 @@ from fastapi import FastAPI, BackgroundTasks, HTTPException
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 from typing import List, Optional
+from chat import runConversation
+from voice import generateVoice, processCode
+from dotenv import load_dotenv
 
-# # Assuming these modules exist in your directory as per your Flask code
-# from chat import runConversation, sentiment
-# from voice import generateVoice, processCode
+load_dotenv()
 
 app = FastAPI()
-
-# --- Pydantic Models for Request Validation ---
 
 class ResourceRequest(BaseModel):
     location: str
@@ -24,7 +23,6 @@ class ChatRequest(BaseModel):
     message: str
     sentMemory: List
 
-# --- Helper Functions ---
 
 def delete_audio_task(token: str):
     """Background task to delete audio after serving."""
@@ -33,11 +31,9 @@ def delete_audio_task(token: str):
     if os.path.exists(file_path):
         os.remove(file_path)
 
-# --- Routes ---
 
 @app.post("/Resources")
 async def resources(req: ResourceRequest):
-    # Trims first 4 characters (e.g., "src/...") as per your logic
     file_location = req.location[4:]
     
     if not os.path.exists(file_location):
@@ -56,7 +52,6 @@ async def resources(req: ResourceRequest):
 
 @app.get("/Resources/vtuber hood on/vtuber hood on.1024/texture_00.png")
 async def resources_png():
-    # Serves the static texture path defined in your Flask code
     path = "Resources/vtuber hood on/vtuber hood on.2048/texture_00.png"
     return FileResponse(path, media_type="image/png")
 
@@ -67,40 +62,35 @@ async def get_audio(req: AudioRequest, background_tasks: BackgroundTasks):
     
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="Audio file not found")
-        
-    # Add deletion to background tasks so it runs after the response is sent
     background_tasks.add_task(delete_audio_task, location)
     
     return FileResponse(file_path, media_type='audio/wav')
 
-# --- Converted Version of your commented-out 'returnResponse' ---
-
-# @app.post("/returnResponse")
-# async def return_response(req: ChatRequest):
-#     try: 
-#         response_text, memory = runConversation(req.message, req.sentMemory)
-#         if response_text != '':
-#             processed_response = processCode(response_text)
-#             token, length = generateVoice(processed_response)
-#             feeling = sentiment(processed_response)
+@app.post("/returnResponse")
+async def return_response(req: ChatRequest):
+    try: 
+        response_text, memory = runConversation(req.message, req.sentMemory)
+        if response_text != '':
+            processed_response = processCode(response_text)
+            token, length = generateVoice(processed_response)
             
-#             return {
-#                 'response': [{
-#                     'message': response_text, 
-#                     'token': token, 
-#                     'mood': feeling, 
-#                     'time': length
-#                 }], 
-#                 'sentMemory': memory
-#             }
-#         return {"response": [], "sentMemory": req.sentMemory}
+            return {
+                'response': [{
+                    'message': response_text, 
+                    'token': token, 
+                    'mood': "exp_05", 
+                    'time': length
+                }], 
+                'sentMemory': memory
+            }
+        return {"response": [], "sentMemory": req.sentMemory}
 
-#     except Exception: 
-#         token, length = generateVoice('what?')
-#         return {
-#             'response': [
-#                 {'message': 'what?', 'token': token, 'mood': 'exp_05', 'time': length},
-#                 req.sentMemory
-#             ], 
-#             'sentMemory': req.sentMemory
-#         }
+    except Exception: 
+        token, length = generateVoice('what?')
+        return {
+            'response': [
+                {'message': 'what?', 'token': token, 'mood': 'exp_05', 'time': length},
+                req.sentMemory
+            ], 
+            'sentMemory': req.sentMemory
+        }

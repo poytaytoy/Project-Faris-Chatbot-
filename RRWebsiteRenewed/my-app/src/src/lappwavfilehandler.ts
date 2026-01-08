@@ -113,7 +113,6 @@ export class LAppWavFileHandler {
 
       //! They have to fetch the filepath regardless
       
-
       var request = {
         method: 'POST',
         headers: {
