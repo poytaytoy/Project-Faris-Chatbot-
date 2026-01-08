@@ -1,4 +1,4 @@
-Overview
+## Overview
 
 The Faris project for the system containing Faris. Faris is an AI chatbot powered by ChatGPT 3.5 and Live2D Web SDK paired with the React Framework. As of now, it can talk about typical conversations and answer questions as you would expect from ChatGPT. It was largely inspired by Neuro-sama at the time, and being a programmer, I’ve also given it the ability to display code.
 
@@ -15,7 +15,7 @@ Preview of Website:
 
 ---
 
-Current Status
+## Current Status
 
 Note as of Jan 8 2026,
 
