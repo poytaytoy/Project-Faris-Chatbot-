@@ -8,10 +8,20 @@ from typing import List, Optional
 from chat import runConversation
 from voice import generateVoice, processCode
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 load_dotenv()
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://project-faris-chatbot.vercel.app"], # Or ["*"] for testing
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class ResourceRequest(BaseModel):
     location: str

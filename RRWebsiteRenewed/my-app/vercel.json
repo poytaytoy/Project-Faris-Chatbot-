@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/Resources/:path*",
+      "destination": "https://project-faris-chatbot.onrender.com/Resources/:path*"
+    },
+    {
+      "source": "/audioBeg",
+      "destination": "https://project-faris-chatbot.onrender.com/audioBeg"
+    },
+    {
+      "source": "/returnResponse",
+      "destination": "https://project-faris-chatbot.onrender.com/returnResponse"
+    }
+  ]
+}
